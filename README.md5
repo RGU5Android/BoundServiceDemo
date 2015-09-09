@@ -1,0 +1,2 @@
+Use this command to view the code flow.
+    -   adb logcat -c && adb logcat *:F

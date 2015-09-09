@@ -19,6 +19,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     BinderService mBinderService;
     boolean mBound;
     Button mButton;
+    private ServiceConnection mServiceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            Log.wtf("Activity", "ServiceConnection:onServiceConnected " + name.toString());
+            BinderService.LocalBinder localBinder = (BinderService.LocalBinder) service;
+            mBinderService = localBinder.getService();
+            mBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            Log.wtf("Activity", "ServiceConnection:onServiceDisconnected " + name.toString());
+            mBound = false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,22 +58,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mBound = false;
         }
     }
-
-    private ServiceConnection mServiceConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            Log.wtf("Activity", "ServiceConnection:onServiceConnected " + name.toString());
-            BinderService.LocalBinder localBinder = (BinderService.LocalBinder) service;
-            mBinderService = localBinder.getService();
-            mBound = true;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            Log.wtf("Activity", "ServiceConnection:onServiceDisconnected " + name.toString());
-            mBound = false;
-        }
-    };
 
     @Override
     public void onClick(View v) {

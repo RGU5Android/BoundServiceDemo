@@ -29,13 +29,6 @@ public class BinderService extends Service {
         return mLocalBinder;
     }
 
-    public class LocalBinder extends Binder {
-        public BinderService getService() {
-            Log.wtf("Service", "LocalBinder:getService");
-            return BinderService.this;
-        }
-    }
-
     public int getRandom() {
         Log.wtf("Service", "getRandom");
         return mRandom.nextInt(1000);
@@ -45,5 +38,12 @@ public class BinderService extends Service {
     public void onDestroy() {
         Log.wtf("Service", "onDestroy");
         super.onDestroy();
+    }
+
+    public class LocalBinder extends Binder {
+        public BinderService getService() {
+            Log.wtf("Service", "LocalBinder:getService");
+            return BinderService.this;
+        }
     }
 }

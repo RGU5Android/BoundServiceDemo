@@ -187,7 +187,7 @@
  *       same "printed page" as the copyright notice for easier
  *       identification within third-party archives.
  *
- *    Copyright {yyyy} {name of copyright owner}
+ *    Copyright 2015. Rahul Gunvant Uppalwar
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -206,7 +206,6 @@ package rgu5android.bound.service.demo.services.messenger_method;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -242,10 +241,8 @@ public class MessengerService extends Service implements Handler.Callback {
         Log.wtf("Service", msg.toString());
         switch (msg.what) {
             case MSG_SAY_HELLO:
-                Bundle bundle = new Bundle();
-                bundle.putInt("number", getRandom());
-                msg.setData(bundle);
-
+                Toast.makeText(getApplicationContext(), "Calling Service Method GetRandom: " +
+                        getRandom(), Toast.LENGTH_SHORT).show();
                 break;
         }
         return false;

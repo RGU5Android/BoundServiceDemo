@@ -40,6 +40,12 @@ public class BinderService extends Service {
         super.onDestroy();
     }
 
+    @Override
+    public boolean onUnbind(Intent intent) {
+        Log.wtf("Service", "onUnbind");
+        return super.onUnbind(intent);
+    }
+
     public class LocalBinder extends Binder {
         public BinderService getService() {
             Log.wtf("Service", "LocalBinder:getService");

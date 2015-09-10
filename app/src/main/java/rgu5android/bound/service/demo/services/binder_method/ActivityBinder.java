@@ -1,4 +1,4 @@
-package rgu5android.bound.service.demo;
+package rgu5android.bound.service.demo.services.binder_method;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -12,13 +12,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import rgu5android.bound.service.demo.services.binder_method.BinderService;
+import rgu5android.bound.service.demo.R;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class ActivityBinder extends AppCompatActivity implements View.OnClickListener {
 
-    BinderService mBinderService;
-    boolean mBound;
-    Button mButton;
+    private BinderService mBinderService;
+    private boolean mBound;
+    private Button mStartBinderServiceButton;
     private ServiceConnection mServiceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -38,9 +38,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mButton = (Button) findViewById(R.id.button);
-        mButton.setOnClickListener(this);
+        setContentView(R.layout.activity_binder);
+        mStartBinderServiceButton = (Button) findViewById(R.id.button_start_binder_service);
+        mStartBinderServiceButton.setOnClickListener(this);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.button) {
+        if (v.getId() == R.id.button_start_binder_service) {
             Toast.makeText(this, "Random Number is: " +
                     mBinderService.getRandom(), Toast.LENGTH_SHORT).show();
         }

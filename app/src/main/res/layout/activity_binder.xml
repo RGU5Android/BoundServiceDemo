@@ -212,7 +212,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="rgu5android.bound.service.demo.services.binder_method.ActivityBinder">
 
-
     <Button
         android:id="@+id/button_start_binder_service"
         android:layout_width="wrap_content"

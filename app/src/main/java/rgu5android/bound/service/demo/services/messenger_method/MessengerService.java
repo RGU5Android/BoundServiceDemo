@@ -230,13 +230,6 @@ public class MessengerService extends Service implements Handler.Callback {
     }
 
     @Override
-    public IBinder onBind(Intent intent) {
-        Log.wtf("Service", "onBind");
-        Toast.makeText(getApplicationContext(), "Binding", Toast.LENGTH_SHORT).show();
-        return mMessenger.getBinder();
-    }
-
-    @Override
     public boolean handleMessage(Message msg) {
         Log.wtf("Service", msg.toString());
         switch (msg.what) {
@@ -257,6 +250,13 @@ public class MessengerService extends Service implements Handler.Callback {
     public void onDestroy() {
         super.onDestroy();
         Log.wtf("Service", "onDestroy");
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        Log.wtf("Service", "onBind");
+        Toast.makeText(getApplicationContext(), "Binding", Toast.LENGTH_SHORT).show();
+        return mMessenger.getBinder();
     }
 
     @Override

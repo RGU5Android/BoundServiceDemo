@@ -228,6 +228,7 @@ public class ActivityMessenger extends AppCompatActivity implements View.OnClick
     private Messenger mServiceMessenger;
     private boolean mBound;
     private Handler mHandler;
+
     private ServiceConnection mServiceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -254,19 +255,19 @@ public class ActivityMessenger extends AppCompatActivity implements View.OnClick
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        Intent intent = new Intent(this, MessengerService.class);
-        bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
-    }
-
-    @Override
     protected void onStop() {
         super.onStop();
         if (mBound) {
             unbindService(mServiceConnection);
             mBound = false;
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Intent intent = new Intent(this, MessengerService.class);
+        bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override

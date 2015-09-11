@@ -228,26 +228,26 @@ public class BinderService extends Service {
     }
 
     @Override
-    public IBinder onBind(Intent intent) {
-        Log.wtf("Service", "onBind");
-        return mLocalBinder;
-    }
-
-    public int getRandom() {
-        Log.wtf("Service", "getRandom");
-        return mRandom.nextInt(1000);
-    }
-
-    @Override
     public void onDestroy() {
         Log.wtf("Service", "onDestroy");
         super.onDestroy();
     }
 
     @Override
+    public IBinder onBind(Intent intent) {
+        Log.wtf("Service", "onBind");
+        return mLocalBinder;
+    }
+
+    @Override
     public boolean onUnbind(Intent intent) {
         Log.wtf("Service", "onUnbind");
         return super.onUnbind(intent);
+    }
+
+    public int getRandom() {
+        Log.wtf("Service", "getRandom");
+        return mRandom.nextInt(1000);
     }
 
     public class LocalBinder extends Binder {
